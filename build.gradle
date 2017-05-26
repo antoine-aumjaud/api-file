@@ -1,0 +1,56 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+mainClassName = 'fr.aumjaud.antoine.services.file-search.LaunchServer'
+version = '1.0.0'
+def apiJavalibVersion = '1.2.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+	flatDir {
+    	dirs 'lib'
+    }
+}
+
+def apiJavalibFile = new File(projectDir.getAbsolutePath() + '/lib/api-javalib-' + apiJavalibVersion + '.jar')
+if (!apiJavalibFile.exists()) {
+    new URL("https://github.com/antoine-aumjaud/api-javalib/releases/download/v${apiJavalibVersion}/api-javalib-${apiJavalibVersion}.jar")
+    	.withInputStream { is -> apiJavalibFile.withOutputStream{ it << is }}
+}
+
+dependencies {
+	compile name: 'api-javalib', version: apiJavalibVersion
+	//Transitive dependencies
+    compile('com.sparkjava:spark-core:2.6.0') {
+    	exclude group: 'org.slf4j' //old version
+	}
+    compile 'org.slf4j:slf4j-api:1.7.25'
+	compile 'com.google.code.gson:gson:2.8.0'
+	compile 'org.bouncycastle:bcpkix-jdk15on:1.52'
+    //
+    runtime 'ch.qos.logback:logback-classic:1.2.3'
+	testCompile 'junit:junit:4.12'
+}
+
+processResources {
+    filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [
+        "application.name": project.property("name"),
+        "application.version": project.property("version")
+    ]
+}
+
+distributions {
+    custom {
+    	version = '' //remove version from path in TAR file (for docker container build)
+	}	
+}
+startScripts { //override classpath in distribution task
+    classpath += files('src/dist/lib/conf')
+}
+run { //override classpath in run task
+  classpath += files('src/dist/lib/conf')
+}
