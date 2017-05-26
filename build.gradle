@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'application'
 
 mainClassName = 'fr.aumjaud.antoine.services.file.LaunchServer'
-version = '1.0.0'
+version = '0.0.1'
 def apiJavalibVersion = '1.2.0'
 
 sourceCompatibility = 1.8
