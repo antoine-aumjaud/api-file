@@ -11,7 +11,7 @@ import fr.aumjaud.antoine.services.common.security.WrongRequestException;
 import spark.Request;
 import spark.Response;
 
-public class FileResource {
+public class FileResource2 {
 	private static final Logger logger = LoggerFactory.getLogger(FileResource.class);
 
 	private Properties properties;
