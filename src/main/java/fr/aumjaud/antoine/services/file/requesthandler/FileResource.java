@@ -1,4 +1,4 @@
-package fr.aumjaud.antoine.services.fileSearch.requesthandler;
+package fr.aumjaud.antoine.services.file.requesthandler;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -11,8 +11,8 @@ import fr.aumjaud.antoine.services.common.security.WrongRequestException;
 import spark.Request;
 import spark.Response;
 
-public class FileSearchResource {
-	private static final Logger logger = LoggerFactory.getLogger(FileSearchResource.class);
+public class FileResource {
+	private static final Logger logger = LoggerFactory.getLogger(FileResource.class);
 
 	private Properties properties;
 
@@ -22,7 +22,7 @@ public class FileSearchResource {
 	 */
 	public void setConfig(Properties properties) {
 		this.properties = properties;
-		fileSearchService.setConfig(properties);
+		//fileService.setConfig(properties);
 	}
 
 	/**

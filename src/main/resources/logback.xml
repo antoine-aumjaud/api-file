@@ -3,9 +3,9 @@
 	<shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
  
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/api-file-search.txt</file>
+        <file>logs/api-file.txt</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/api-file-search.%d{yyyy-MM-dd}.txt</fileNamePattern>
+            <fileNamePattern>logs/api-file.%d{yyyy-MM-dd}.txt</fileNamePattern>
             <!-- keep 1 days' worth of history -->
             <maxHistory>5</maxHistory>
         </rollingPolicy>

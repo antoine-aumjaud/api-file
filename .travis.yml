@@ -21,8 +21,8 @@ cache:
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker build -t antoineaumjaud/api-file-search:latest .;
-    docker push antoineaumjaud/api-file-search;
+    docker build -t antoineaumjaud/api-file:latest .;
+    docker push antoineaumjaud/api-file;
     fi
 
 notifications:

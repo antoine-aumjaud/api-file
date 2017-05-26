@@ -1,4 +1,4 @@
-package fr.aumjaud.antoine.services.filesearch;
+package fr.aumjaud.antoine.services.file;
 
 import static spark.Spark.post;
 
@@ -6,7 +6,7 @@ import java.util.Properties;
 
 import fr.aumjaud.antoine.services.common.server.SparkImplementation;
 import fr.aumjaud.antoine.services.common.server.SparkLauncher;
-import fr.aumjaud.antoine.services.filesearch.requesthandler.FileSearchResource;
+import fr.aumjaud.antoine.services.file.requesthandler.FileResource;
 
 public class LaunchServer {
 
@@ -14,7 +14,7 @@ public class LaunchServer {
 
 		new SparkLauncher(new SparkImplementation() {
 
-			private FileSearchResource fileSearchResource  = new FileSearchResource();
+			private FileResource fileResource  = new FileResource();
 
 			@Override
 			public String getAppConfigName() {
@@ -23,12 +23,12 @@ public class LaunchServer {
 
 			@Override
 			public void setConfig(Properties appProperties) {
-				fileSearchResource.setConfig(appProperties);
+				fileResource.setConfig(appProperties);
 			}
 
 			@Override
 			public void initSpark(String securePath) {
-				post(securePath + "/secure/fileSearchResource/:fileName", fileSearchResource::search);
+				post(securePath + "/secure/search/:fileName", fileResource::search);
 			} 
 		});
 
