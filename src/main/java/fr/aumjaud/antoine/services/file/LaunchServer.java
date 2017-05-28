@@ -1,6 +1,6 @@
 package fr.aumjaud.antoine.services.file;
 
-import static spark.Spark.post;
+import static spark.Spark.get;
 
 import java.util.Properties;
 
@@ -28,7 +28,7 @@ public class LaunchServer {
 
 			@Override
 			public void initSpark(String securePath) {
-				post(securePath + "/secure/search/:fileName", fileResource::search);
+				get(securePath + "/search/:fileId", fileResource::search);
 			} 
 		});
 

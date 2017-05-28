@@ -1,34 +1,37 @@
 package fr.aumjaud.antoine.services.file.requesthandler;
 
-import java.io.IOException;
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import fr.aumjaud.antoine.services.common.security.NoAccessException;
 import fr.aumjaud.antoine.services.common.security.WrongRequestException;
+import fr.aumjaud.antoine.services.file.service.FileService;
 import spark.Request;
 import spark.Response;
 
-public class FileResource2 {
-	private static final Logger logger = LoggerFactory.getLogger(FileResource.class);
+public class FileResource {
+	//private static final Logger logger = LoggerFactory.getLogger(FileResource.class);
 
-	private Properties properties;
+	private FileService fileService = new FileService();
 
 	/**
 	 * Set config 
 	 * @param properties the config to set
 	 */
 	public void setConfig(Properties properties) {
-		this.properties = properties;
-		//fileService.setConfig(properties);
+		fileService.setConfig(properties);
 	}
 
 	/**
 	 * Search for something in a file
 	 */
 	public String search(Request request, Response response) {
-		return null;
+		String fileId = request.params("fileId");
+		if(fileId == null)
+			throw new WrongRequestException("fieldId not defined", "The filedId path paramater is mandatory");
+
+		String searchValue = request.queryParams("search");
+		if(searchValue == null)
+			throw new WrongRequestException("value to search not defined", "The search value query paramater is mandatory");
+		
+		return fileService.search(fileId, searchValue);
 	}
 }
