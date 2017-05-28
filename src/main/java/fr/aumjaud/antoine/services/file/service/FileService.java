@@ -27,7 +27,7 @@ public class FileService {
 
 	/**
 	 * Search for a string value in a file
-	 * @param fileId the file ID to seach in
+	 * @param fileId the file ID to search in
 	 * @param searchValue the value to find
 	 * @return the part of file which match the regexp
 	 */

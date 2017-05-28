@@ -26,7 +26,7 @@ public class FileResource {
 	public String search(Request request, Response response) {
 		String fileId = request.params("fileId");
 		if(fileId == null)
-			throw new WrongRequestException("fieldId not defined", "The filedId path paramater is mandatory");
+			throw new WrongRequestException("fileId not defined", "The fileId path paramater is mandatory");
 
 		String searchValue = request.queryParams("search");
 		if(searchValue == null)
