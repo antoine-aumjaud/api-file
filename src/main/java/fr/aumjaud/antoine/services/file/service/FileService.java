@@ -33,27 +33,27 @@ public class FileService {
 	 */
 	public String search(String fileId, String searchValue) {
 
-		String fileName = properties.getProperty("file." + fileId + ".name");
+		String fileName = properties.getProperty("file." + fileId + ".path");
 		if (fileName == null)
-			throw new WrongRequestException("fieldId has no filename defined", "The filedId paramater has o filename defined in configuration file");
+			throw new WrongRequestException("fieldId has no filename defined", "The filedId paramater has no filename defined in configuration file");
 
 		logger.debug("Load file: {}", fileName);
 		StringBuilder fileContent = new StringBuilder();
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				fileContent.append(line);
+				fileContent.append(line).append("\n");
 			}
 		} catch (IOException e) {
 			throw new IllegalStateException("Can't read file: " + fileName, e);
 		}
 		
-		logger.info("Search {} in file: {}", fileName);
+		logger.info("Search '{}' in file: {}", searchValue, fileName);
 		Pattern pattern = Pattern.compile(properties.getProperty("file.search.regexp").replace("$VALUE", searchValue));
-		Matcher matcher = pattern.matcher(fileContent);
+		Matcher matcher = pattern.matcher(fileContent.toString());
 		if (!matcher.find())
 			return null;
 
-		return matcher.group(1);
+		return matcher.group(0);
 	}
 }
