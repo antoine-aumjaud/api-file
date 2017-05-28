@@ -26,7 +26,6 @@ public class FileServiceTest {
 		
 		// When
 		String result = fileService.search("file1", "myvalue");
-		//(.*\n)?(.*\n)?.*myvalue.*(.*\n)?(.*\n)?(.*\n)?
 
 		// Then
 		assertEquals("4\n5\nmyvalue\n6\n7\n", result);

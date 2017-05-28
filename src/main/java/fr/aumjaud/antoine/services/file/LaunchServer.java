@@ -18,7 +18,7 @@ public class LaunchServer {
 
 			@Override
 			public String getAppConfigName() {
-				return "api-docker.properties";
+				return "api-file.properties";
 			}
 
 			@Override
