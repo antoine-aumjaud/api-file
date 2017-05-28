@@ -19,7 +19,7 @@ public class FileServiceTest {
 	}
 
 	@Test
-	public void seach_should_return__the_value_get_container_command_if_exists() {
+	public void search_should_return__the_value_get_container_command_if_exists() {
 		// Given
 		properties.put("file.file1.path", "src/test/resources/file1.txt");
 		properties.put("file.search.regexp", "(.*\\n)?(.*\\n)?.*$VALUE.*(.*\\n)?(.*\\n)?(.*\\n)?");
