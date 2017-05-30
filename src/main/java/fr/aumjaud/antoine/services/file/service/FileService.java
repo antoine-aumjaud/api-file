@@ -1,11 +1,12 @@
 package fr.aumjaud.antoine.services.file.service;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,16 +39,13 @@ public class FileService {
 			throw new WrongRequestException("fieldId has no filename defined", "The filedId paramater has no filename defined in configuration file");
 
 		logger.debug("Load file: {}", fileName);
-		StringBuilder fileContent = new StringBuilder();
-		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-			String line;
-			while ((line = br.readLine()) != null) {
-				fileContent.append(line).append("\n");
-			}
+		String fileContent;
+		try {
+			fileContent = Files.lines(Paths.get(fileName)).collect(Collectors.joining("  \n"));
 		} catch (IOException e) {
 			throw new IllegalStateException("Can't read file: " + fileName, e);
 		}
-		
+
 		logger.info("Search '{}' in file: {}", searchValue, fileName);
 		Pattern pattern = Pattern.compile(properties.getProperty("file.search.regexp").replace("$VALUE", searchValue));
 		Matcher matcher = pattern.matcher(fileContent.toString());
