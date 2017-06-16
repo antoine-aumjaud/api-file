@@ -1,7 +1,5 @@
 FROM openjdk:8-jre-alpine
 
-RUN apk --no-cache add docker
-
 LABEL maintainer "Antoine Aumjaud <antoine_dev@aumjaud.fr>"
 
 EXPOSE 9080
