@@ -6,8 +6,8 @@ apply plugin: 'java'
 apply plugin: 'application'
 
 mainClassName = 'fr.aumjaud.antoine.services.file.LaunchServer'
-version = '1.0.1'
-def apiJavalibVersion = '1.8.0'
+version = '1.0.2'
+def apiJavalibVersion = '1.9.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -35,6 +35,7 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.25'
 	compile 'com.google.code.gson:gson:2.8.0'
 	compile 'org.bouncycastle:bcpkix-jdk15on:1.52'
+	compile 'com.auth0:java-jwt:3.3.0'
     //
     runtime 'ch.qos.logback:logback-classic:1.2.3'
 	testCompile 'junit:junit:4.12'

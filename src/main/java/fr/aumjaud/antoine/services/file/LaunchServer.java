@@ -22,6 +22,11 @@ public class LaunchServer {
 			}
 
 			@Override
+			public String getApiName() {
+				return "api-file";
+			}
+
+			@Override
 			public void setConfig(Properties appProperties) {
 				fileResource.setConfig(appProperties);
 			}
