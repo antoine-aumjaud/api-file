@@ -4,8 +4,8 @@ import static spark.Spark.get;
 
 import java.util.Properties;
 
-import fr.aumjaud.antoine.services.common.server.SparkImplementation;
-import fr.aumjaud.antoine.services.common.server.SparkLauncher;
+import fr.aumjaud.antoine.services.common.server.spark.SparkImplementation;
+import fr.aumjaud.antoine.services.common.server.spark.SparkLauncher;
 import fr.aumjaud.antoine.services.file.requesthandler.FileResource;
 
 public class LaunchServer {
