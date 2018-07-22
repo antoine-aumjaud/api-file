@@ -1,9 +1,9 @@
-package fr.aumjaud.antoine.services.file.requesthandler;
+package fr.aumjaud.antoine.services.secrets.requesthandler;
 
 import java.util.Properties;
 
 import fr.aumjaud.antoine.services.common.security.WrongRequestException;
-import fr.aumjaud.antoine.services.file.service.FileService;
+import fr.aumjaud.antoine.services.secrets.service.FileService;
 import spark.Request;
 import spark.Response;
 

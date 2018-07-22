@@ -1,4 +1,4 @@
-package fr.aumjaud.antoine.services.file.service;
+package fr.aumjaud.antoine.services.secrets.service;
 
 import java.io.IOException;
 import java.nio.file.Files;

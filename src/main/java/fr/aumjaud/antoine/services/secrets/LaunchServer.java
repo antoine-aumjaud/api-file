@@ -1,4 +1,4 @@
-package fr.aumjaud.antoine.services.file;
+package fr.aumjaud.antoine.services.secrets;
 
 import static spark.Spark.get;
 
@@ -6,7 +6,8 @@ import java.util.Properties;
 
 import fr.aumjaud.antoine.services.common.server.spark.SparkImplementation;
 import fr.aumjaud.antoine.services.common.server.spark.SparkLauncher;
-import fr.aumjaud.antoine.services.file.requesthandler.FileResource;
+import fr.aumjaud.antoine.services.secrets.requesthandler.FileResource;
+import fr.aumjaud.antoine.services.secrets.requesthandler.PropertyResource;
 
 public class LaunchServer {
 
@@ -15,25 +16,28 @@ public class LaunchServer {
 		new SparkLauncher(new SparkImplementation() {
 
 			private FileResource fileResource  = new FileResource();
+			private PropertyResource propertyResource  = new PropertyResource();
 
 			@Override
 			public String getAppConfigName() {
-				return "api-file.properties";
+				return "api-secrets.properties";
 			}
 
 			@Override
 			public String getApiName() {
-				return "api-file";
+				return "api-secrets";
 			}
 
 			@Override
 			public void setConfig(Properties appProperties) {
 				fileResource.setConfig(appProperties);
+				propertyResource.setConfig(appProperties);
 			}
 
 			@Override
 			public void initSpark(String securePath) {
-				get(securePath + "/search/:fileId", fileResource::search);
+				get(securePath + "/files/:fileId", fileResource::search);
+				get(securePath + "/properties/:propertyName", propertyResource::get);
 			} 
 		});
 

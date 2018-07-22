@@ -5,8 +5,8 @@ LABEL maintainer "Antoine Aumjaud <antoine_dev@aumjaud.fr>"
 EXPOSE 9080
 
 WORKDIR /home/app
-ADD build/distributions/api-file.tar .
-VOLUME ./api-file/lib/conf
+ADD build/distributions/api-secrets.tar .
+VOLUME ./api-secrets/lib/conf
 VOLUME ./logs
 
-CMD    ./api-file/bin/api-file
+CMD    ./api-secrets/bin/api-secrets
