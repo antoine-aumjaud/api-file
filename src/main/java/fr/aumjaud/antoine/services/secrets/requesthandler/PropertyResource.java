@@ -21,7 +21,7 @@ public class PropertyResource {
 	}
 
 	/**
-	 * Get a property
+	 * Get a property in the property file
 	 */
 	public String get(Request request, Response response) {
 		String propertyName = request.params("propertyName");
