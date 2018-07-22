@@ -17,7 +17,7 @@ public class PropertyService {
 
 	/**
 	 * Get the value of a property
-	 * @param propertyName the property to find
+	 * @param propertyName the property used to get value from property file
 	 * @return the value of the property
 	 */
 	public String get(String propertyName) {
